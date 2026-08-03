@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { LayoutDashboard, Package, Users, ShoppingBag } from 'lucide-react';
 

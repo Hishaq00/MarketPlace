@@ -3,7 +3,6 @@ import { Plus, Pencil, Trash2, X, Check } from 'lucide-react';
 import { productService } from '../../services/api';
 import Spinner from '../../components/ui/Spinner';
 import toast from 'react-hot-toast';
-import { useAuth } from '../../hooks/useAuth';
 
 const CATEGORIES = ['UI Kits', 'Templates', 'Icons', 'Illustrations', 'Fonts', 'Photography', 'Music', 'Video', 'Plugins', 'Other'];
 
@@ -142,7 +141,7 @@ const AdminProducts = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const fetchProducts = async () => {
+  const fetchProducts = React.useCallback(async () => {
     setLoading(true);
     try {
       const res = await productService.getAdminAll({ page, limit: 15 });
@@ -153,9 +152,9 @@ const AdminProducts = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [page]);
 
-  useEffect(() => { fetchProducts(); }, [page]);
+  useEffect(() => { fetchProducts(); }, [fetchProducts]);
 
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this product? This cannot be undone.')) return;
