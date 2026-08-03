@@ -34,13 +34,23 @@ const StorePage = () => {
 
   useEffect(() => { fetchProducts(); }, [fetchProducts]);
 
-  // Debounce search
+  // Debounce search — also reset category to 'All' when user types
   useEffect(() => {
-    const timer = setTimeout(() => { setSearch(searchInput); setPage(1); }, 400);
+    const timer = setTimeout(() => {
+      setSearch(searchInput);
+      setPage(1);
+      if (searchInput) setCategory('All');
+    }, 400);
     return () => clearTimeout(timer);
   }, [searchInput]);
 
-  const handleCategoryChange = (cat) => { setCategory(cat); setPage(1); };
+  // When a category is clicked, clear the search box
+  const handleCategoryChange = (cat) => {
+    setCategory(cat);
+    setPage(1);
+    setSearchInput('');
+    setSearch('');
+  };
 
   return (
     <div>

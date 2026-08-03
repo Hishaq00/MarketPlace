@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { Eye, EyeOff, Zap, ArrowRight, CheckCircle } from 'lucide-react';
 import { authService } from '../services/api';
-import { setCredentials } from '../redux/authSlice';
 import toast from 'react-hot-toast';
 
 const RegisterPage = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const [showPw, setShowPw] = useState(false);
@@ -26,10 +23,9 @@ const RegisterPage = () => {
     if (form.password !== form.confirmPassword) { setError('Passwords do not match'); return; }
     setLoading(true);
     try {
-      const res = await authService.register({ name: form.name, email: form.email, password: form.password });
-      dispatch(setCredentials(res.data.data));
-      toast.success('Account created! Welcome to AssetVault!');
-      navigate('/');
+      await authService.register({ name: form.name, email: form.email, password: form.password });
+      toast.success('Account created! Please log in to continue.');
+      navigate('/login');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed. Please try again.');
     } finally {
