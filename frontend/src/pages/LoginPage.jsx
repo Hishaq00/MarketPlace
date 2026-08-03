@@ -88,7 +88,7 @@ const LoginPage = () => {
           <div className="divider" />
 
           {/* Demo accounts */}
-          <div style={{ background: 'var(--color-bg-elevated)', borderRadius: 'var(--radius-md)', padding: '14px 16px', marginBottom: 20 }}>
+          {/* <div style={{ background: 'var(--color-bg-elevated)', borderRadius: 'var(--radius-md)', padding: '14px 16px', marginBottom: 20 }}>
             <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-text-muted)', marginBottom: 8 }}>Demo accounts</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               <button type="button" style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: '2px 0' }} onClick={() => setForm({ email: 'admin@assetvault.io', password: 'admin123' })}>
@@ -98,7 +98,7 @@ const LoginPage = () => {
                 👤 User: user@assetvault.io / user1234
               </button>
             </div>
-          </div>
+          </div> */}
 
           <p style={{ textAlign: 'center', fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
             Don't have an account?{' '}
